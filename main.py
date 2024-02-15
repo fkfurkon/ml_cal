@@ -16,11 +16,4 @@ variable_widget = pn.widgets.Select(name="variable", value="Temperaturessss", op
 print(variable_widget)
 console.log("Set up widgets!")
 
-def test():
-    test = Element("test").element.value
-    consloe.log(test)
-
-def tt():
-    print(variable_widget)
-# Servable App
-pn.Column(variable_widget).servable(target='panel')
+pn.Column(variable_widget).servable(target='pun')
