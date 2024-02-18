@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+
+    <title>Gen Image</title>
+</head>
+
+<body>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4">
+            <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <span class="fs-6">ML Generative AI</span>
+            </a>
+        </header>
+    </div>
+    <div class="containerform ">
+        <h4 class="head-about">อาหารที่แนะนำ</h4>
+        <div class="border-bottom"></div>
+        <form id="food-selection" action="/regen">
+            <br>
+            <div><img src="{{ image_url }}" alt="Image 1"></div>
+            <br>
+            <div class="border-bottom"></div>
+            <br>
+            <p class="center">{{ food_name }}</p>
+            <div class="center"><button class="btn btn-primary" href="{{ url_for('regen') }}">ยืนยัน</button></div>
+
+        </form>
+    </div>
+</body>
+
+</html>

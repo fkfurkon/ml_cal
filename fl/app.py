@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, session
 
 app = Flask(__name__)
 
@@ -23,9 +23,13 @@ def Submit():
     
     print(FoodType, calories, Taste, country, Clean, Halal)
 
-    main_ai()
+    # main_ai()
     image_url = "/static/Img_0.jpg"
-    return render_template('index.html', image_url=image_url)
+    return render_template('gen_image.html', image_url=image_url, food_name=response_content)
+
+@app.route('/regen')
+def regen():
+    return redirect(url_for('index'))
 
 # open ai
 import openai
@@ -33,7 +37,7 @@ from base64 import b64decode
 import openai
 from googletrans import Translator
 
-openai.api_key = "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"
+openai.api_key = "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"
 model_1 = "ft:gpt-3.5-turbo-0613:personal:chatner-bot:8rLa33uZ"
 model_2 = "ft:gpt-3.5-turbo-0613:personal:chatner-bot:8rsOdHmF"
 
@@ -43,6 +47,8 @@ Clean = False
 Halal = False
 Taste = "หวาน" #เค็ม หวาน เปรี้ยว เผ็ด ครีมมี่
 Calories = "100"#10 20 50 100 200 240 250 integer
+
+response_content = 'asdf'
 
 def check_attribute(attribute):
     return "ไม่" if not attribute else ""
@@ -82,6 +88,7 @@ def translate_thai_to_english(text):
     return translation.text
 
 def main_ai():
+    global response_content
     fine_tuned_model_id = model_2
     system_message = "คุณคือหุ่นยนต์แชทบอทสำหรับการตอบคำถามด้านอาหารโดยเฉพาะ"
     user_message = f'อยากกินอาหาร ประเภท {FoodType} ประเทศ{FoodCountry} {Clean_result}อาหารคลีน {Halal_result}ฮาลาล  รส{Taste} {Calories} แคล'

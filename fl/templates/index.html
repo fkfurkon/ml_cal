@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -10,19 +10,6 @@
   <link rel="stylesheet" type="text/css" href="/static/styles.css">
 
   <title>Food Selection System</title>
-
-  <!-- bokeh scripts -->
-  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-3.2.2.js"></script>
-  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.2.2.min.js"></script>
-  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.2.2.min.js"></script>
-  <script type="text/javascript">
-    Bokeh.set_log_level("info");
-  </script>
-
-  <!-- panel scripts -->
-  <script defer src="https://cdn.jsdelivr.net/npm/@holoviz/panel@1.3.1/dist/panel.min.js"></script>
-  <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@holoviz/panel@1.3.1/dist/bundled/material-components-web@7.0.0/dist/material-components-web.min.js"></script>
 
 </head>
 
@@ -59,9 +46,7 @@
             <legend>แคลอรี่ :</legend>
           </div>
           <div class="column right">
-            <select id="calories" name="calories">
-              <option value="-" selected>-</option>
-            </select>
+            <input type="number" id="calories" name="calories" min="0" max="100" step="1">
           </div>
         </div>
       </fieldset>
@@ -89,6 +74,17 @@
           </div>
           <div class="column right">
             <select id="country" name="country">
+              <option value="ประเทศฝรั่งเศส" selected>ประเทศฝรั่งเศส</option>
+              <option value="ประเทศอิตาลี" selected>ประเทศอิตาลี</option>
+              <option value="ประเทศเยอรมนี" selected>ประเทศเยอรมนี</option>
+              <option value="ประเทศไทย" selected>ประเทศไทย</option>
+              <option value="ประเทศอินเดีย" selected>ประเทศอินเดีย</option>
+              <option value="ประเทศอังกฤษ" selected>ประเทศอังกฤษ</option>
+              <option value="ประเทศอเมริกา" selected>ประเทศอเมริกา</option>
+              <option value="ประเทศจีน" selected>ประเทศจีน</option>
+              <option value="ประเทศญี่ปุ่น" selected>ประเทศญี่ปุ่น</option>
+              <option value="ประเทศโปรตุเกส" selected>ประเทศโปรตุเกส</option>
+              <option value="ประเทศเกาหลี" selected>ประเทศเกาหลี</option>
               <option value="-" selected>-</option>
             </select>
           </div>
@@ -106,7 +102,7 @@
           </div>
         </div>
       </fieldset>
-      <div class="center"><button id="Submit">Submit</button></div>
+      <div class="center"><button class="btn btn-primary" id="Submit">Submit</button></div>
 
     </form>
     <div id="results" style="display:none;">
@@ -114,7 +110,6 @@
       <p id="food-info"></p>
     </div>
   </div>
-  <div><img src="{{ image_url }}" alt="Image 1"></div>
 </body>
 
 </html>
