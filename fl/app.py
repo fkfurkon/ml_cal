@@ -23,7 +23,7 @@ def Submit():
     
     print(FoodType, calories, Taste, country, Clean, Halal)
 
-    # main_ai()
+    main_ai()
     image_url = "/static/Img_0.jpg"
     return render_template('gen_image.html', image_url=image_url, food_name=response_content)
 
@@ -37,7 +37,7 @@ from base64 import b64decode
 import openai
 from googletrans import Translator
 
-openai.api_key = "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"
+openai.api_key = ""
 model_1 = "ft:gpt-3.5-turbo-0613:personal:chatner-bot:8rLa33uZ"
 model_2 = "ft:gpt-3.5-turbo-0613:personal:chatner-bot:8rsOdHmF"
 
