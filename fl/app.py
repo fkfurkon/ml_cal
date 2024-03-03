@@ -10,18 +10,18 @@ def index():
 # Handle form submission
 @app.route('/foodselection', methods=['POST'])
 def Submit():
-    global FoodType, Clean, Halal, Taste
+    global FoodType, FoodCountry, Clean, Halal, Taste, Calories
     # new_image_path = 'Img_0.jpg'
     # image_viewer.object = new_image_path
     # console.log(food_type.value, calories.value, flavor.value, country.value, clean.value, halal.value)
     FoodType = request.form['food-type']
     calories = request.form['calories']
     Taste = request.form['flavor']
-    country = request.form['country']
+    FoodCountry = request.form['country']
     Clean = request.form.get('clean-food') == 'on'
     Halal = request.form.get('halal-food') == 'on'
     
-    print(FoodType, calories, Taste, country, Clean, Halal)
+    print(FoodType, calories, Taste, FoodCountry, Clean, Halal)
 
     main_ai()
     image_url = "/static/Img_0.jpg"
@@ -48,13 +48,10 @@ Halal = False
 Taste = "หวาน" #เค็ม หวาน เปรี้ยว เผ็ด ครีมมี่
 Calories = "100"#10 20 50 100 200 240 250 integer
 
-response_content = 'asdf'
+response_content = 'menu'
 
 def check_attribute(attribute):
     return "ไม่" if not attribute else ""
-
-Clean_result = check_attribute(Clean)
-Halal_result = check_attribute(Halal)
 
 def generate_chat_response(model_id, messages, temperature=0, max_tokens=500):
     response = openai.ChatCompletion.create(
@@ -79,7 +76,7 @@ def generateImage_AndSave(prompt , image_count) :
 
     prefix = 'Img'
     for index,image in enumerate(images):
-        with open(f'{prefix}_{index}.jpg' ,'wb') as file :
+        with open(f'static/{prefix}_{index}.jpg' ,'wb') as file :
             file.write(b64decode(image))
 
 def translate_thai_to_english(text):
@@ -91,6 +88,8 @@ def main_ai():
     global response_content
     fine_tuned_model_id = model_2
     system_message = "คุณคือหุ่นยนต์แชทบอทสำหรับการตอบคำถามด้านอาหารโดยเฉพาะ"
+    Clean_result = check_attribute(Clean)
+    Halal_result = check_attribute(Halal)
     user_message = f'อยากกินอาหาร ประเภท {FoodType} ประเทศ{FoodCountry} {Clean_result}อาหารคลีน {Halal_result}ฮาลาล  รส{Taste} {Calories} แคล'
     test_messages = [
         {"role": "system", "content": system_message},

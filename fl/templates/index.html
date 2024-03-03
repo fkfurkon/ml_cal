@@ -9,6 +9,8 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="/static/styles.css">
 
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
   <title>Food Selection System</title>
 
 </head>
@@ -21,21 +23,21 @@
       </a>
     </header>
   </div>
-  <div class="containerform ">
+  <div class="containerform2 ">
     <h4 class="head-about">กรอกข้อมูลเกี่ยวกับอาหารที่ต้องการ</h4>
     <div class="border-bottom"></div>
-    <form id="food-selection" method="POST" action="/foodselection">
+    <form class="form" id="food-selection" method="POST" action="/foodselection">
       <fieldset>
         <div class="row">
           <div class="column left">
             <legend>ประเภทอาหาร :</legend>
           </div>
           <div class="column right">
-            <select id="food_type" name="food-type">
-              <option value="ของหวาน" selected>ของหวาน</option>
-              <option value="เครื่องดิ่ม" selected>เครื่องดิ่ม</option>
-              <option value="อาหารทั่วไป" selected>อาหารทั่วไป</option>
-              <option value="-" selected>-</option>
+            <select id="food_type" name="food-type" required>
+              <option value="" selected hidden>เลือกประเภทอาหาร</option>
+              <option value="ของหวาน">ของหวาน</option>
+              <option value="เครื่องดิ่ม">เครื่องดิ่ม</option>
+              <option value="อาหารทั่วไป">อาหารทั่วไป</option>
             </select>
           </div>
         </div>
@@ -45,9 +47,10 @@
           <div class="column left">
             <legend>แคลอรี่ :</legend>
           </div>
-          <div class="column right">
-            <input type="number" id="calories" name="calories" min="0" max="100" step="1">
+          <div class="column cl_center">
+            <input type="number" id="calories" name="calories" required placeholder="ระบุแคลอรี่ที่ต้องการ" min="20" max="800" step="1">
           </div>
+          <div class="column kcal"><legend>kcal</legend></div>
         </div>
       </fieldset>
       <fieldset>
@@ -56,13 +59,13 @@
             <legend>รสชาติ :</legend>
           </div>
           <div class="column right">
-            <select id="flavor" name="flavor">
-              <option value="หวาน" selected>หวาน</option>
-              <option value="เปรี่ยว" selected>เปรี้ยว</option>
-              <option value="เผ็ด" selected>เผ็ด</option>
-              <option value="เค็ม" selected>เค็ม</option>
-              <option value="เค็มปี๋" selected>เค็มปี๋</option>
-              <option value="-" selected>-</option>
+            <select id="flavor" name="flavor" required>
+              <option value="" hidden selected>เลือกรสชาติที่ต้องการ</option>
+              <option value="หวาน">หวาน</option>
+              <option value="เปรี่ยว">เปรี้ยว</option>
+              <option value="เผ็ด">เผ็ด</option>
+              <option value="เค็ม">เค็ม</option>
+              <option value="ครีมมี่">ครีมมี่</option>
             </select>
           </div>
         </div>
@@ -73,19 +76,19 @@
             <legend>ประเทศ :</legend>
           </div>
           <div class="column right">
-            <select id="country" name="country">
-              <option value="ประเทศฝรั่งเศส" selected>ประเทศฝรั่งเศส</option>
-              <option value="ประเทศอิตาลี" selected>ประเทศอิตาลี</option>
-              <option value="ประเทศเยอรมนี" selected>ประเทศเยอรมนี</option>
-              <option value="ประเทศไทย" selected>ประเทศไทย</option>
-              <option value="ประเทศอินเดีย" selected>ประเทศอินเดีย</option>
-              <option value="ประเทศอังกฤษ" selected>ประเทศอังกฤษ</option>
-              <option value="ประเทศอเมริกา" selected>ประเทศอเมริกา</option>
-              <option value="ประเทศจีน" selected>ประเทศจีน</option>
-              <option value="ประเทศญี่ปุ่น" selected>ประเทศญี่ปุ่น</option>
-              <option value="ประเทศโปรตุเกส" selected>ประเทศโปรตุเกส</option>
-              <option value="ประเทศเกาหลี" selected>ประเทศเกาหลี</option>
-              <option value="-" selected>-</option>
+            <select id="country" name="country" required>
+              <option value="" hidden selected>เลือกประเทศที่ต้องการ</option>
+              <option value="ประเทศฝรั่งเศส">ประเทศฝรั่งเศส</option>
+              <option value="ประเทศอิตาลี">ประเทศอิตาลี</option>
+              <option value="ประเทศเยอรมนี">ประเทศเยอรมนี</option>
+              <option value="ประเทศไทย">ประเทศไทย</option>
+              <option value="ประเทศอินเดีย">ประเทศอินเดีย</option>
+              <option value="ประเทศอังกฤษ">ประเทศอังกฤษ</option>
+              <option value="ประเทศอเมริกา">ประเทศอเมริกา</option>
+              <option value="ประเทศจีน">ประเทศจีน</option>
+              <option value="ประเทศญี่ปุ่น">ประเทศญี่ปุ่น</option>
+              <option value="ประเทศโปรตุเกส">ประเทศโปรตุเกส</option>
+              <option value="ประเทศเกาหลี">ประเทศเกาหลี</option>
             </select>
           </div>
         </div>
